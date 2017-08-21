@@ -5,7 +5,7 @@
 MAJOR := 0
 MINOR := 1
 PATCH := 0
-STATE := a
+STATE := pa
 VERSION := $(MAJOR).$(MINOR)$(STATE)$(PATCH)
 # Utilities
 RM := rm -f
@@ -41,7 +41,6 @@ install: $(TARGET)
 	$(CHMOD) +x $(INSTALL_LOCATION)/bin/sisy
 	$(MKDIR) $(INSTALL_LOCATION)/share/sisy/
 	$(CP) build/jar/$(TARGET).jar $(INSTALL_LOCATION)/share/sisy/
-	$(CP) sisy.bc /etc/bash_completion.d
 	$(CP) sisy.1 $(INSTALL_LOCATION)/share/man/man1
 
 clean :
