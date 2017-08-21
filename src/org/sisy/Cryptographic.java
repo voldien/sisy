@@ -88,7 +88,7 @@ public class Cryptographic {
 
         /*	Get block size. */
         blocksize = getBlockSize(ecipher);
-		
+
 		/*	Write file.	*/
         buffer = new byte[blocksize];
         while (instream.available() > blocksize) {

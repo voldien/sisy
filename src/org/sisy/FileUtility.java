@@ -45,10 +45,11 @@ public class FileUtility {
 
     /**
      * Get all files in directory.
+     *
      * @param directory
      * @return non-null string array.
      */
-    public static String[] getAllFiles(String directory){
+    public static String[] getAllFiles(String directory) {
         File file = new File(directory);
         String[] files = file.list(new FilenameFilter() {
             @Override

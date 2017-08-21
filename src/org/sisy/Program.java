@@ -51,7 +51,7 @@ public class Program {
 
         /*	Get cipher enum for cryptographic.	*/
         cipher = Cryptographic.CIPHER.valueOf(config.getString("cipher").toUpperCase().concat("_").concat(
-                Integer.toString( config.getInt("keysize"))
+                Integer.toString(config.getInt("keysize"))
         ));
 
 
@@ -123,7 +123,7 @@ public class Program {
             }
 
             /*  Check directory.    */
-            if( directories == null)
+            if (directories == null)
                 return;
 
             /*  Iterate through each sub directory. */

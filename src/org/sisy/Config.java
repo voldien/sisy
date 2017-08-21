@@ -118,7 +118,7 @@ public class Config {
     private Hashtable<String, Integer> iconfig;
 
     /**
-     *  Load default configuration.
+     * Load default configuration.
      */
     private void loadDefaultConfig() {
 
@@ -165,8 +165,8 @@ public class Config {
 		/*	The program can't run no option specified.  */
         if (argv.length < 1)
             throw new Exception("requires at least one argument");
-		
-		/*	Parse user argument option.	*/
+
+        /*	Parse user argument option.	*/
         while ((c = GetOpt.getOptLong(argv, shortopt, longoption)) != -1) {
             switch (c) {
                 case 'v':

@@ -18,15 +18,15 @@ public class GetOpt {
     /**
      * Get option by parsing the argument vector.
      *
-     * @param argv string array of argument.
-     * @param shortopt supported short option with the same standard as in getopt.
+     * @param argv       string array of argument.
+     * @param shortopt   supported short option with the same standard as in getopt.
      * @param longoption long option that maps to short option.
      * @return short option code, -1 if no more to read.
      * @throws Exception
      */
-    public static int getOptLong( String[] argv, String shortopt, Option[] longoption) throws Exception {
+    public static int getOptLong(String[] argv, String shortopt, Option[] longoption) throws Exception {
 
-		/*	Continue in till all argument has been read. */
+        /*	Continue in till all argument has been read. */
         while (optind < argv.length) {
 
             String arg = argv[optind++];
@@ -51,7 +51,7 @@ public class GetOpt {
 
                 throw new Exception(String.format("Invalid option, %s", arg));
             }
-			/*	Short option.*/
+            /*	Short option.*/
             else if (arg.startsWith("-")) {
                 String sarg = arg.substring(1, 2);
 
