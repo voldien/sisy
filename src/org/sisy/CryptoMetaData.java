@@ -37,29 +37,35 @@ public class CryptoMetaData {
     public static CryptoMetaData create(InputStream stream) throws Exception {
 
         byte sign[];
+        String metasignature;
         CryptoMetaData crypto;
         int size;
         int nbytes = 0;
 
         /*  Check error.    */
-        if(stream == null)
+        if (stream == null)
             throw new IllegalArgumentException("invalid stream object");
 
 		/*  Read signature. */
-		sign = new byte[5];
+        sign = new byte[5];
         nbytes += stream.read(sign);
+        metasignature = new String(sign, "UTF-8");
 
         /*	Check signature.    */
-		if(sign.toString().compareTo(signature) == 0)
-		    throw new IllegalAccessException(String.format("invalid signature: %s", sign.toString()));
+        if (metasignature.compareTo(signature) != 0)
+            throw new IllegalAccessException(String.format("invalid signature: %s", metasignature));
 
 		/*  Read size.   */
         size = stream.read();
         nbytes += 4;
+
+        /*  Check meta size attribute.  */
+        if(size > metasize || size < 1 )
+            throw new Exception("Invalid meta size");
+
+        /*  */
         crypto = new CryptoMetaData(0);
 
-		/*	*/
-        crypto.compression = stream.read();
         crypto.noffset = stream.read();
         nbytes += 8;
 
