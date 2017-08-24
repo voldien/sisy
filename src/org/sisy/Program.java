@@ -79,9 +79,13 @@ public class Program {
     /*  TODO rename.    */
     public static void logicFunction(String[] files, String[] directories, String password, Cryptographic.CIPHER cipher, Config config) throws Exception {
 
+        final float invnano = 1.0f / 1E9f;
         boolean encrypt = config.getBoolean("encrypt");
         boolean compress = config.getBoolean("compression");
+        int nbytes;
+        int sizeRatio = 0;
         String destpath;
+        long before;
 
         try {
             /*	Iterate through each file paths.	*/
