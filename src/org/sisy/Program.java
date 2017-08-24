@@ -87,9 +87,9 @@ public class Program {
         String destpath;
         long before;
 
-        try {
-            /*	Iterate through each file paths.	*/
-            for (String path : files) {
+        /*	Iterate through each file paths.	*/
+        for (String path : files) {
+            try {
 
                 /*	Expand path.    */
                 path = FileUtility.expandPath(path);
@@ -124,20 +124,20 @@ public class Program {
                         nbytes = Cryptographic.decryptFile(path, destpath, cipher,
                                 password.getBytes());
                     }
-                }
+
+
+            } catch (Exception ex) {
+                throw ex;
             }
+        }
 
-            /*  Check directory.    */
-            if (directories == null)
-                return;
+        /*  Check directory.    */
+        if (directories == null)
+            return;
 
-            /*  Iterate through each sub directory. */
-            for (String subdir : directories) {
-                logicFunction(FileUtility.getAllFiles(subdir), FileUtility.getAllSubDirectory(subdir), password, cipher, config);
-            }
-
-        } catch (Exception ex) {
-            throw ex;
+        /*  Iterate through each sub directory. */
+        for (String subdir : directories) {
+            logicFunction(FileUtility.getAllFiles(subdir), FileUtility.getAllSubDirectory(subdir), password, cipher, config);
         }
     }
 
