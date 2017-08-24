@@ -35,6 +35,7 @@ public class Program {
             config = Config.createConfig(argv);
         } catch (Exception ex) {
             System.console().printf("Failed while reading user options: '%s'.\n", ex.getMessage());
+            ex.printStackTrace();
             System.exit(1);
         }
 
@@ -46,6 +47,7 @@ public class Program {
 
         } catch (Exception ex) {
             System.console().printf("Requires at least a single file.\n");
+            ex.printStackTrace();
             System.exit(1);
         }
 
