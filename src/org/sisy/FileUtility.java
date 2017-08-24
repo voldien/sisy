@@ -12,6 +12,16 @@ import java.io.FilenameFilter;
 public class FileUtility {
 
     /**
+     *
+     * @param path
+     * @return
+     */
+    public static long getFileSize(String path){
+        File file = new File(path);
+        return file.length();
+    }
+
+    /**
      * Expand path.
      *
      * @param path valid path.
