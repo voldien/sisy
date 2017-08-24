@@ -34,19 +34,25 @@ public class Cryptographic {
      * @return number of bytes encrypted file.
      * @throws Exception if any of the method throws an exception.
      */
-    public static int encryptFile(String path, String newfile, CIPHER ciph, byte[] key) throws Exception {
+    public static int encryptFile(String path, String newfile, CIPHER cipher, byte[] key) throws Exception {
 
-        File f;
         FileInputStream instream;
+        FileOutputStream outstream;
+        CipherOutputStream cipherOutputStream;
         int nbytes;
 
-		/*	*/
-        f = new File(path);
-        instream = new FileInputStream(f);
+        /*	Create and open output file.	*/
+        instream = new FileInputStream(path);
+        outstream = new FileOutputStream(newfile);
 
-		/*	Encrypt stream. */
-        nbytes = encryptStream(instream, newfile, ciph, key);
+        /*	Encrypt stream. */
+        cipherOutputStream = createOutputStream(outstream, cipher, key, true);
+        nbytes = encryptStream(instream, cipherOutputStream, cipher);
+
+        /*  Release streams.    */
+        cipherOutputStream.close();
         instream.close();
+        outstream.close();
 
         return nbytes;
     }
@@ -125,19 +131,26 @@ public class Cryptographic {
      * @return number of bytes written to file.
      * @throws Exception if any of the method throws an exception.
      */
-    public static int decryptFile(String filename, String newfile, CIPHER ciph, byte[] key) throws Exception {
+    public static int decryptFile(String path, String newfile, CIPHER cipher, byte[] key) throws Exception {
 
         File f;
         FileInputStream instream;
+        OutputStream outstream;
+        CipherInputStream cipherInputStream;
         int nbytes;
 
-		/*	Create and open file input stream.	*/
-        f = new File(filename);
-        instream = new FileInputStream(f);
-		
-		/*	*/
-        nbytes = decryptStream(instream, newfile, ciph, key);
+        /*	Create and open output file.	*/
+        instream = new FileInputStream(path);
+        outstream = new FileOutputStream(newfile);
+
+		/*	Decrypt file.   */
+        cipherInputStream = createInputStream(instream, cipher, key, false);
+        nbytes = decryptStream(cipherInputStream, outstream, cipher);
+
+        /*  Release streams.    */
+        cipherInputStream.close();
         instream.close();
+        outstream.close();
 
         return nbytes;
     }
