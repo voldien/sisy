@@ -13,7 +13,7 @@ public class CryptoMetaData {
     /**
      *
      */
-    private static final int metasize = 3 * 4 + 5;
+    private static final int metasize = 32;
     private static final String signature = ".sisy";
     private int compression;
     private int noffset;
