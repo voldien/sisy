@@ -30,7 +30,7 @@ public class Program {
         String[] directory = null;
         Cryptographic.CIPHER cipher;
 
-		/*	Read user option.	*/
+        /*	Read argument and create config object.	*/
         try {
             config = Config.createConfig(argv);
         } catch (Exception ex) {
@@ -39,7 +39,7 @@ public class Program {
             System.exit(1);
         }
 
-		/*  Get absolute filepath for each file for encryption. */
+        /*  Get absolute filepath for each file. */
         try {
             /*	Get all files.	*/
             files = config.getStrings("files");
@@ -56,8 +56,7 @@ public class Program {
                 Integer.toString(config.getInt("keysize"))
         ));
 
-
-		/*	Encrypt/Decrypt file/s.	*/
+		/*	Encrypt/Decrypt files.	*/
         try {
             logicFunction(files, directory, config.getString("password"), cipher, config);
         } catch (Exception ex) {
