@@ -107,7 +107,7 @@ public class Program {
                                 password.getBytes());
                     } else {
                         /*	Encrypt.	*/
-                        Cryptographic.encryptFile(path, destpath, cipher,
+                        nbytes = Cryptographic.encryptFile(path, destpath, cipher,
                                 password.getBytes());
                     }
                 } else {
@@ -116,8 +116,8 @@ public class Program {
                         Cryptographic.decryptStream(Compression.createInflateStream(path), destpath, cipher,
                                 password.getBytes());
                     } else {
-                        /**/
-                        Cryptographic.decryptFile(path, destpath, cipher,
+                        /*  Decrypt file.   */
+                        nbytes = Cryptographic.decryptFile(path, destpath, cipher,
                                 password.getBytes());
                     }
                 }
