@@ -13,10 +13,10 @@ import java.util.zip.*;
 public class Compression {
 
     /**
-     * Create deflate file stream.
+     * Create deflate input stream.
      *
      * @param path filepath.
-     * @return non-null inputstream object.
+     * @return non-null InputStream object.
      * @throws Exception relay exception down the stack.
      */
     public static InputStream createDeflateStream(String path) throws Exception {
@@ -34,22 +34,22 @@ public class Compression {
     }
 
     /**
-     * Create inflate file stream.
+     * Create inflate OutputStream object.
      *
      * @param path file path.
      * @return non-null stream.
      * @throws Exception relay exception down the stack.
      */
-    public static InputStream createInflateStream(String path) throws Exception {
+    public static OutputStream createInflateStream(String path) throws Exception {
 
         File f;
-        InflaterInputStream inflate;
-        FileInputStream instream;
+        InflaterOutputStream inflate;
+        FileOutputStream instream;
 
 		/*	Open and create deflate stream.	*/
         f = new File(path);
-        instream = new FileInputStream(f);
-        inflate = new InflaterInputStream(instream);
+        instream = new FileOutputStream(f);
+        inflate = new InflaterOutputStream(instream);
 
         return inflate;
     }
