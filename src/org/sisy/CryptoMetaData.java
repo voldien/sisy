@@ -2,6 +2,8 @@ package org.sisy;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
 
 /**
  * Contains data about encrypted file.
@@ -98,18 +100,26 @@ public class CryptoMetaData {
      *
      * @return non-null byte array.
      */
-    public byte[] toByteArray() {
+    public byte[] toByteArray() throws Exception {
 
-		/*  */
+        /*  Create buffer.  */
+        byte[] meta = new byte[metasize];
         ByteBuffer buffer = ByteBuffer.allocate(metasize);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
 
-		/*  Create byte representation. */
-		buffer.put(signature.getBytes());
+        /*  Create byte representation. */
+        buffer.put(signature.getBytes());
         buffer.putInt(metasize);
-        buffer.putInt(compression);
         buffer.putInt(noffset);
 
-        return buffer.array();
+        /*  */
+        Arrays.fill(meta, (byte) 0);
+        if (buffer.hasArray())
+            System.arraycopy(buffer.array(), 0, meta, 0, buffer.array().length);
+        else
+            throw new Exception("couldn't create byte representation of MetaData");
+
+        return meta;
     }
 
 }
