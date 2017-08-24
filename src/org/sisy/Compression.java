@@ -21,13 +21,11 @@ public class Compression {
      */
     public static InputStream createDeflateStream(String path) throws Exception {
 
-        File f;
         DeflaterInputStream deflate;
         FileInputStream instream;
 
 		/*	Open and create deflate stream.	*/
-        f = new File(path);
-        instream = new FileInputStream(f);
+        instream = new FileInputStream(path);
         deflate = new DeflaterInputStream(instream);
 
         return deflate;
@@ -42,13 +40,11 @@ public class Compression {
      */
     public static OutputStream createInflateStream(String path) throws Exception {
 
-        File f;
         InflaterOutputStream inflate;
         FileOutputStream instream;
 
 		/*	Open and create deflate stream.	*/
-        f = new File(path);
-        instream = new FileOutputStream(f);
+        instream = new FileOutputStream(path);
         inflate = new InflaterOutputStream(instream);
 
         return inflate;
