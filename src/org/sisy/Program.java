@@ -90,6 +90,7 @@ public class Program {
         /*	Iterate through each file paths.	*/
         for (String path : files) {
             try {
+                before = System.nanoTime();
 
                 /*	Expand path.    */
                 path = FileUtility.expandPath(path);
@@ -114,6 +115,10 @@ public class Program {
                         nbytes = Cryptographic.encryptFile(path, destpath, cipher,
                                 password.getBytes());
                     }
+
+                    sizeRatio = (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
+                    System.console().printf("Encrypted: %s => %s ( deflated %d %% ) %d, %.2f s.\n", path, destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+
                 } else {
                     if (compress) {
                         /*	UnCompress. */
@@ -125,6 +130,9 @@ public class Program {
                                 password.getBytes());
                     }
 
+                    sizeRatio = (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
+                    System.console().printf("Decrypt: %s => %s ( inflate %d %% ) %d, %.2f s.\n", path,  destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+                }
 
             } catch (Exception ex) {
                 throw ex;
