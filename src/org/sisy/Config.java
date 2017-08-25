@@ -159,7 +159,7 @@ public class Config {
         Config config = new Config();
         ArrayList<String> filearray = new ArrayList<>();
         String[] files;
-        String shortopt = "vrcdPC:k:p:o:";
+        String shortopt = "vrc:dPC:k:p:o:";
         int c;
 
 		/*	The program can't run no option specified.  */
