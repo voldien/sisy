@@ -127,6 +127,7 @@ public class Config {
         setString("password", "");
         setBoolean("compression", false);
         setBoolean("encrypt", true);
+        setBoolean("verbosity", true);
         setString("recursion", "");
         setString("output", "");
         setBoolean("pipe", false);
@@ -145,6 +146,7 @@ public class Config {
         final Option[] longoption = new Option[]{
                 new Option("version", 'v'),
                 new Option("verbose", 'V'),
+                new Option("quite", 'Q'),
                 new Option("cipher", 'c'),
                 new Option("keyspace", 'k'),
                 new Option("password", 'p'),
@@ -197,6 +199,9 @@ public class Config {
                     break;
                 case 'P':
                     config.setBoolean("pipe", true);
+                case 'Q':
+                    config.setBoolean("verbosity", false);
+                    break;
                 default:
                     filearray.add(GetOpt.getArgument());
                     break;
