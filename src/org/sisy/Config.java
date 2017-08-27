@@ -153,6 +153,7 @@ public class Config {
                 new Option("output", 'o'),
                 new Option("compression", 'C'),
                 new Option("pipe", 'P'),
+                new Option("directory", 'D'),
         };
 
 		/*  */
