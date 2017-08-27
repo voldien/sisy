@@ -82,6 +82,8 @@ public class Program {
         final float invnano = 1.0f / 1E9f;
         boolean encrypt = config.getBoolean("encrypt");
         boolean compress = config.getBoolean("compression");
+        boolean verbose = config.getBoolean("verbosity");
+        /*  */
         long nbytes;
         int sizeRatio;
         String destpath;
@@ -116,8 +118,12 @@ public class Program {
                                 password.getBytes());
                     }
 
-                    sizeRatio = comptueFileRatio(path, nbytes);
-                    System.console().printf("Encrypted: %s => %s ( deflated %d %% ) %d, %.2f s.\n", path, destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+                    /*  Logging.    */
+                    if(verbose) {
+                        sizeRatio = computeFileRatio(path, nbytes);
+                        System.console().printf("Encrypted: %s => %s ( deflated %d %% ) %d, %.2f s.\n", path, destpath,
+                                sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+                    }
 
                 } else {
                     if (compress) {
@@ -130,8 +136,12 @@ public class Program {
                                 password.getBytes());
                     }
 
-                    sizeRatio = comptueFileRatio(path, nbytes);
-                    System.console().printf("Decrypt: %s => %s ( inflate %d %% ) %d, %.2f s.\n", path,  destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+                    /*  Logging.    */
+                    if(verbose) {
+                        sizeRatio = computeFileRatio(path, nbytes);
+                        System.console().printf("Decrypt: %s => %s ( inflate %d %% ) %d, %.2f s.\n", path,
+                                destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
+                    }
                 }
 
             } catch (Exception ex) {
@@ -155,8 +165,8 @@ public class Program {
      * @param nbytes
      * @return
      */
-    private static int comptueFileRatio(String path, long nbytes){
-        return (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
+    private static int computeFileRatio(String path, long nbytes) {
+        return (int) (((float) FileUtility.getFileSize(path) / (float) nbytes) * 100.0f) - 100;
     }
 
 }
