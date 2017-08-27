@@ -82,8 +82,8 @@ public class Program {
         final float invnano = 1.0f / 1E9f;
         boolean encrypt = config.getBoolean("encrypt");
         boolean compress = config.getBoolean("compression");
-        int nbytes;
-        int sizeRatio = 0;
+        long nbytes;
+        int sizeRatio;
         String destpath;
         long before;
 
@@ -116,7 +116,7 @@ public class Program {
                                 password.getBytes());
                     }
 
-                    sizeRatio = (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
+                    sizeRatio = comptueFileRatio(path, nbytes);
                     System.console().printf("Encrypted: %s => %s ( deflated %d %% ) %d, %.2f s.\n", path, destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
 
                 } else {
@@ -130,7 +130,7 @@ public class Program {
                                 password.getBytes());
                     }
 
-                    sizeRatio = (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
+                    sizeRatio = comptueFileRatio(path, nbytes);
                     System.console().printf("Decrypt: %s => %s ( inflate %d %% ) %d, %.2f s.\n", path,  destpath, sizeRatio, nbytes, (float) (System.nanoTime() - before) * invnano);
                 }
 
@@ -147,6 +147,16 @@ public class Program {
         for (String subdir : directories) {
             logicFunction(FileUtility.getAllFiles(subdir), FileUtility.getAllSubDirectory(subdir), password, cipher, config);
         }
+    }
+
+    /**
+     *
+     * @param path
+     * @param nbytes
+     * @return
+     */
+    private static int comptueFileRatio(String path, long nbytes){
+        return (int)(((float)FileUtility.getFileSize(path) / (float)nbytes) * 100.0f) - 100;
     }
 
 }
