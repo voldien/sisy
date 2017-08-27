@@ -96,7 +96,7 @@ public class Program {
                 path = FileUtility.expandPath(path);
 
                 /*  Solve if any regex pattern. */
-                path = Paths.get(path).toAbsolutePath().toString();
+                path = Paths.get(path).toString();
 
                 /*	Destination file path.  */
                 if (config.getString("output").isEmpty())
