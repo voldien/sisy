@@ -131,6 +131,7 @@ public class Config {
         setString("recursion", "");
         setString("output", "");
         setBoolean("pipe", false);
+        setString("directory", "");
     }
 
     /**
@@ -162,7 +163,7 @@ public class Config {
         Config config = new Config();
         ArrayList<String> filearray = new ArrayList<>();
         String[] files;
-        String shortopt = "vrc:dPC:k:p:o:";
+        String shortopt = "vrc:dPC:k:p:o:D:";
         int c;
 
 		/*	The program can't run no option specified.  */
@@ -199,8 +200,12 @@ public class Config {
                     break;
                 case 'P':
                     config.setBoolean("pipe", true);
+                    break;
                 case 'Q':
                     config.setBoolean("verbosity", false);
+                    break;
+                case 'D':
+                    config.setString("directory", GetOpt.getArgument());
                     break;
                 default:
                     filearray.add(GetOpt.getArgument());
