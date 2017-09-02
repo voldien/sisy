@@ -205,7 +205,11 @@ public class Config {
                     config.setBoolean("verbosity", false);
                     break;
                 case 'D':
-                    config.setString("directory", GetOpt.getArgument());
+                    if(FileUtility.isDirectory(GetOpt.getArgument()))
+                        config.setString("directory", GetOpt.getArgument());
+                    else
+                        throw new IllegalArgumentException(String.format("%s is not a valid directory",
+                                GetOpt.getArgument()));
                     break;
                 default:
                     filearray.add(GetOpt.getArgument());

@@ -54,6 +54,16 @@ public class FileUtility {
     }
 
     /**
+     * Check if directory path is a directory.
+     * @param directory directory path.
+     * @return true if directory, false otherwise.
+     */
+    public static boolean isDirectory(String directory){
+        File file = new File(directory);
+        return file.isDirectory();
+    }
+
+    /**
      * Get all files in directory.
      *
      * @param directory
