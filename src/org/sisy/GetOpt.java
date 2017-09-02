@@ -63,7 +63,7 @@ public class GetOpt {
                     }
 
 					/*	return option code.	*/
-                    return Integer.getInteger(sarg).intValue();
+                    return Integer.valueOf(sarg);
 
                 } else
                     throw new Exception(String.format("Invalid option, %s", arg));
