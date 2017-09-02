@@ -6,7 +6,7 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
- * Contains data about encrypted file.
+ * Contains information about encrypted files.
  *
  * @author Valdemar Lindberg
  */
@@ -16,9 +16,12 @@ public class CryptoMetaData {
      *
      */
     private static final int metasize = 32;
+    private static final int metaheader = 32;
     private static final String signature = ".sisy";
-    private int compression;
+
+    private boolean compression;
     private int noffset;
+    private byte[] iv;
 
     /**
      * Create instance.
@@ -26,7 +29,28 @@ public class CryptoMetaData {
      * @param noffset
      */
     public CryptoMetaData(int noffset) {
+        this.compression = false;
         this.noffset = noffset;
+    }
+
+    /**
+     * @param noffset
+     * @param compression
+     */
+    public CryptoMetaData(int noffset, boolean compression) {
+        this.compression = compression;
+        this.noffset = noffset;
+    }
+
+    /**
+     * @param noffset
+     * @param compression
+     * @param iv
+     */
+    public CryptoMetaData(int noffset, boolean compression, byte[] iv) {
+        this.compression = compression;
+        this.noffset = noffset;
+        this.iv = iv;
     }
 
     /**
@@ -62,7 +86,7 @@ public class CryptoMetaData {
         nbytes += 4;
 
         /*  Check meta size attribute.  */
-        if(size > metasize || size < 1 )
+        if (size > metasize || size < 1)
             throw new Exception("Invalid meta size");
 
         /*  */
@@ -78,12 +102,12 @@ public class CryptoMetaData {
     }
 
     /**
-     * Check if compression is used.
+     * Check if compression where used.
      *
      * @return true if compression is used, false otherwise.
      */
     public boolean getCompression() {
-        return compression != 0;
+        return compression;
     }
 
     /**
@@ -93,6 +117,14 @@ public class CryptoMetaData {
      */
     public int getNoffset() {
         return noffset;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public byte[] getIV() {
+        return iv;
     }
 
     /**
