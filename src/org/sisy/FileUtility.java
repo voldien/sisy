@@ -9,15 +9,13 @@ import java.io.FilenameFilter;
  *
  * @author Valdemar Lindberg
  */
-public class FileUtility
-{
+public class FileUtility {
 
     /**
      * @param path
      * @return
      */
-    public static long getFileSize(String path)
-    {
+    public static long getFileSize(String path) {
         File file = new File(path);
         return file.length();
     }
@@ -28,8 +26,7 @@ public class FileUtility
      * @param path valid path.
      * @return non-null terminated string.
      */
-    public static String expandPath(String path)
-    {
+    public static String expandPath(String path) {
         if (path.startsWith(path + File.separator)) {
             return System.getProperty("user.home") + path.substring(1);
         }
@@ -42,8 +39,7 @@ public class FileUtility
      * @param path directory path.
      * @return string array of directories.
      */
-    public static String[] getAllSubDirectory(String path)
-    {
+    public static String[] getAllSubDirectory(String path) {
         return new File(path).list((current, name) -> {
             File f = new File(current, name);
             return f.isDirectory();
@@ -56,8 +52,7 @@ public class FileUtility
      * @param directory directory path.
      * @return true if directory, false otherwise.
      */
-    public static boolean isDirectory(String directory)
-    {
+    public static boolean isDirectory(String directory) {
         File file = new File(directory);
         return file.isDirectory();
     }
@@ -68,8 +63,7 @@ public class FileUtility
      * @param directory
      * @return non-null string array.
      */
-    public static String[] getAllFiles(String directory)
-    {
+    public static String[] getAllFiles(String directory) {
         return new File(directory).list((current, name) -> {
             File f = new File(current, name);
             return f.isFile();
