@@ -12,7 +12,6 @@ import java.io.FilenameFilter;
 public class FileUtility {
 
     /**
-     *
      * @param path
      * @return
      */
@@ -27,8 +26,8 @@ public class FileUtility {
      * @param path valid path.
      * @return non-null terminated string.
      */
-    public static String expandPath(String path) {
-        if (path.startsWith(path + File.separator)) {
+    public static String expandPath(String path){
+        if (path.startsWith(path + File.separator)){
             return System.getProperty("user.home") + path.substring(1);
         }
         return path;
@@ -40,21 +39,16 @@ public class FileUtility {
      * @param path directory path.
      * @return string array of directories.
      */
-    public static String[] getAllSubDirectory(String path) {
-
-        File file = new File(path);
-        String[] directories = file.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isDirectory();
-            }
+    public static String[] getAllSubDirectory(String path){
+        return new File(path).list((current, name) -> {
+            File f = new File(current, name);
+            return f.isDirectory();
         });
-
-        return directories;
     }
 
     /**
      * Check if directory path is a directory.
+     *
      * @param directory directory path.
      * @return true if directory, false otherwise.
      */
@@ -69,15 +63,10 @@ public class FileUtility {
      * @param directory
      * @return non-null string array.
      */
-    public static String[] getAllFiles(String directory) {
-        File file = new File(directory);
-        String[] files = file.list(new FilenameFilter() {
-            @Override
-            public boolean accept(File current, String name) {
-                return new File(current, name).isFile();
-            }
+    public static String[] getAllFiles(String directory){
+        return new File(directory).list((current, name) -> {
+            File f = new File(current, name);
+            return f.isFile();
         });
-
-        return files;
     }
 }
