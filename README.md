@@ -31,7 +31,7 @@ make install
 It will compile and create a jar file. Where the jar file be installed on the system under the */usr/share/java* directory. Where a bash script will be installed in the */usr/bin* directory. This script will create a executable sisy file. Where the script will forward the user argument to the java program. This will the system to use the *sisy* program as any other command line program in Linux.
 
 # Contributing #
-Please read the [CONTRIBUTING.md](CONTRIBUTING) for more details of how you can contriubute.
+Please read the [CONTRIBUTING](CONTRIBUTING.md) for more details of how you can contriubute.
 
 ## License ##
 
