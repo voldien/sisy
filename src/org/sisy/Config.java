@@ -147,6 +147,7 @@ public class Config {
         final Option[] longoption = new Option[]{
                 new Option("version", 'v'),
                 new Option("verbose", 'V'),
+                new Option("help", 'h'),
                 new Option("quite", 'Q'),
                 new Option("cipher", 'c'),
                 new Option("keyspace", 'k'),
@@ -163,7 +164,7 @@ public class Config {
         Config config = new Config();
         ArrayList<String> filearray = new ArrayList<>();
         String[] files;
-        String shortopt = "vrc:dPC:k:p:o:D:";
+        String shortopt = "vhrc:dPC:k:p:o:D:";
         int c;
 
 		/*	The program can't run no option specified.  */
