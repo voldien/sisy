@@ -58,7 +58,7 @@ public class Program {
 
 		/*	Encrypt/Decrypt files.	*/
         try {
-            logicFunction(files, directory, config.getString("password"), cipher, config);
+            recursiveCrypto(files, directory, config.getString("password"), cipher, config);
         } catch (Exception ex) {
             System.console().printf("Error occurred during encryption/decryption: '%s'.\n", ex.getMessage());
             ex.printStackTrace();
@@ -76,8 +76,7 @@ public class Program {
      * @param cipher
      * @param config
      */
-    /*  TODO rename.    */
-    public static void logicFunction(String[] files, String[] directories, String password, Cryptographic.CIPHER cipher, Config config) throws Exception {
+    public static void recursiveCrypto(String[] files, String[] directories, String password, Cryptographic.CIPHER cipher, Config config) throws Exception {
 
         final float invnano = 1.0f / 1E9f;
         boolean encrypt = config.getBoolean("encrypt");
@@ -154,8 +153,8 @@ public class Program {
             return;
 
         /*  Iterate through each sub directory. */
-        for (String subdir : directories) {
-            logicFunction(FileUtility.getAllFiles(subdir), FileUtility.getAllSubDirectory(subdir), password, cipher, config);
+        for (String sdir : directories) {
+            recursiveCrypto(FileUtility.getAllFiles(sdir), FileUtility.getAllSubDirectory(sdir), password, cipher, config);
         }
     }
 
