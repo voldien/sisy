@@ -169,7 +169,7 @@ public class Config {
 
         /*	The program can't run with no argument.  */
         if (argv.length < 1)
-            throw new Exception("requires at least one argument");
+            throw new IllegalArgumentException("requires at least one argument");
 
         /*	Parse user argument option.	*/
         while ((c = GetOpt.getOptLong(argv, shortopt, longoption)) != -1) {
