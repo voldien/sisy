@@ -167,7 +167,7 @@ public class Config {
         String shortopt = "vhrc:dPC:k:p:o:D:";
         int c;
 
-		/*	The program can't run no option specified.  */
+        /*	The program can't run with no argument.  */
         if (argv.length < 1)
             throw new Exception("requires at least one argument");
 
