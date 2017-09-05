@@ -82,6 +82,7 @@ public class Program {
         boolean encrypt = config.getBoolean("encrypt");
         boolean compress = config.getBoolean("compression");
         boolean verbose = config.getBoolean("verbosity");
+        String directory = config.getString("directory");
         /*  */
         long nbytes;
         int sizeRatio;
