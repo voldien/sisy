@@ -123,7 +123,7 @@ public class Config {
     private void loadDefaultConfig() {
 
         setString("cipher", "aes");
-        setInt("keysize", 128);
+        setInt("keysize", 0);
         setString("password", "");
         setBoolean("compression", false);
         setBoolean("encrypt", true);
