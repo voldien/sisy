@@ -41,6 +41,7 @@ install: $(TARGET)
 	$(CHMOD) +x $(INSTALL_LOCATION)/bin/sisy
 	$(MKDIR) $(INSTALL_LOCATION)/share/sisy/
 	$(CP) build/jar/$(TARGET).jar $(INSTALL_LOCATION)/share/sisy/
+	$(CP) sisy.bc $(INSTALL_LOCATION)/share/bash-completion/completions/sisy
 	$(CP) sisy.1 $(INSTALL_LOCATION)/share/man/man1
 
 clean :
