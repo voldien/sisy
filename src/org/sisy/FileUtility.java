@@ -1,7 +1,6 @@
 package org.sisy;
 
 import java.io.File;
-import java.io.FilenameFilter;
 
 /**
  * Utility class for extracting
@@ -28,8 +27,8 @@ public class FileUtility {
      * @param path valid path.
      * @return non-null terminated string.
      */
-    public static String expandPath(String path){
-        if (path.startsWith(path + File.separator)){
+    public static String expandPath(String path) {
+        if (path.startsWith(path + File.separator)) {
             return System.getProperty("user.home") + path.substring(1);
         }
         return path;
@@ -41,7 +40,7 @@ public class FileUtility {
      * @param path directory path.
      * @return string array of directories.
      */
-    public static String[] getAllSubDirectory(String path){
+    public static String[] getAllSubDirectory(String path) {
         return new File(path).list((current, name) -> {
             File f = new File(current, name);
             return f.isDirectory();
@@ -54,7 +53,7 @@ public class FileUtility {
      * @param directory directory path.
      * @return true if directory, false otherwise.
      */
-    public static boolean isDirectory(String directory){
+    public static boolean isDirectory(String directory) {
         File file = new File(directory);
         return file.isDirectory();
     }
