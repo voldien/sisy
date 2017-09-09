@@ -20,7 +20,8 @@ _sisy(){
 	--compression
 	--pipe
 	--ssl
-	--directory"
+	--directory
+	--help"
 
 	# Default generate compare of all available option.
 	COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
