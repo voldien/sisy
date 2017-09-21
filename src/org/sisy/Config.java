@@ -132,6 +132,7 @@ public class Config {
         setString("output", "");
         setBoolean("pipe", false);
         setString("directory", "");
+        setInt("block-size", 65536);
     }
 
     /**
@@ -158,6 +159,7 @@ public class Config {
                 new Option("compression", 'C'),
                 new Option("pipe", 'P'),
                 new Option("directory", 'D'),
+                new Option("block-size", 'b'),
         };
 
 		/*  */
@@ -211,6 +213,9 @@ public class Config {
                     else
                         throw new IllegalArgumentException(String.format("%s is not a valid directory",
                                 GetOpt.getArgument()));
+                    break;
+                case 'b':
+                    config.setInt("block-size", Integer.parseInt(GetOpt.getArgument()));
                     break;
                 default:
                     filearray.add(GetOpt.getArgument());
