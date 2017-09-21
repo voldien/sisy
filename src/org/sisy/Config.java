@@ -180,6 +180,10 @@ public class Config {
                     System.out.write(String.format("version %s.\n", Program.getVersion()).getBytes());
                     System.exit(0);
                     break;
+                case 'h':
+                    System.out.write(HelpViewFactory.createConsoleHelpViewString(Program.getVersion()).getBytes());
+                    System.exit(0);
+                    break;
                 case 'c':
                     config.setString("cipher", GetOpt.getArgument());
                     break;
