@@ -154,4 +154,20 @@ public class CryptoMetaData {
         return meta;
     }
 
+    /**
+     * Meta data flag.
+     * @author Valdemar Lindberg
+     */
+    enum FLAGS {
+        NONE(0x0),              /*  No flag option. */
+        NEGATIVE_OFFSET(0x1),   /*  Contains negative offset.   */
+        COMPRESSION(0x2),       /*  Contains compressed.    */
+        IV(0x4);                /*  Contains Initialization vector.   */
+
+        public int flag;
+
+        FLAGS(int i) {
+            flag = i;
+        }
+    }
 }
