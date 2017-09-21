@@ -228,6 +228,9 @@ public class Config {
         filearray.toArray(files);
         config.setStrings("files", files);
 
+        /*  Reset the getopt.   */
+        GetOpt.reset();
+
         return config;
     }
 
