@@ -1,6 +1,6 @@
 package org.sisy;
 
-/*
+/**
  * Get option from program argument.
  * Its based on how the getopt in c
  * is used.
@@ -10,7 +10,7 @@ package org.sisy;
 public class GetOpt {
 
     /**
-     *
+     * Internal variable for reading the opt.
      */
     private static String optarg;
     private static int optind = 0;
@@ -22,9 +22,18 @@ public class GetOpt {
      * @param shortopt   supported short option with the same standard as in getopt.
      * @param longoption long option that maps to short option.
      * @return short option code, -1 if no more to read.
-     * @throws Exception
+     * @throws Exception if argument is invalid.
+     * @throws IllegalArgumentException if argument is invalid.
      */
     public static int getOptLong(String[] argv, String shortopt, Option[] longoption) throws Exception {
+
+        /*  */
+        if(argv == null)
+            throw new IllegalArgumentException("Parameter argv cannot be a null reference.");
+
+        /*  */
+        if(shortopt == null)
+            throw new IllegalArgumentException("Parameter shortopt cannot be a null reference.");
 
         /*	Continue in till all argument has been read. */
         while (optind < argv.length) {
@@ -38,11 +47,13 @@ public class GetOpt {
             if (arg.startsWith("--")) {
                 String larg = arg.substring(2);
 
+                /*  */
                 if (larg.contains("=")) {
                     optarg = larg.substring(larg.indexOf("=") + 1);
                     larg = larg.substring(0, larg.indexOf("=")).replace("\"", "");
                 }
 
+                /*  */
                 for (Option option : longoption) {
                     if (option.getLongopt().compareTo(larg) == 0) {
                         return option.getShortopt();
@@ -72,7 +83,16 @@ public class GetOpt {
             return 0;
         }
 
+        /*  End of file.    */
         return -1;
+    }
+
+    /**
+     *  Reset the getopt.
+     */
+    public static void reset(){
+       optarg = null;
+       optind = 0;
     }
 
     /**
