@@ -6,6 +6,7 @@ package org.sisy;
  * option.
  *
  * @author Valdemar Lindberg
+ *
  */
 public class Option {
 
