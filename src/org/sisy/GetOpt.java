@@ -27,11 +27,8 @@ public class GetOpt {
      */
     public static int getOptLong(String[] argv, String shortopt, Option[] longoption) throws Exception {
 
-        /*  */
         if(argv == null)
             throw new IllegalArgumentException("Parameter argv cannot be a null reference.");
-
-        /*  */
         if(shortopt == null)
             throw new IllegalArgumentException("Parameter shortopt cannot be a null reference.");
 
