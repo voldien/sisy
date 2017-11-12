@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Versions
 MAJOR := 0
 MINOR := 1
