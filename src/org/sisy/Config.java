@@ -160,7 +160,7 @@ public class Config {
                 new Option("pipe", 'P'),
                 new Option("directory", 'D'),
                 new Option("block-size", 'b'),
-                /*  */
+                /*  Long options only.  */
                 new Option("debug", '_'),
         };
 
