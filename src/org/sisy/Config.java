@@ -160,6 +160,8 @@ public class Config {
                 new Option("pipe", 'P'),
                 new Option("directory", 'D'),
                 new Option("block-size", 'b'),
+                /*  */
+                new Option("debug", '_'),
         };
 
 		/*  */
@@ -220,6 +222,15 @@ public class Config {
                     break;
                 case 'b':
                     config.setInt("block-size", Integer.parseInt(GetOpt.getArgument()));
+                    break;
+                case '_':   /*  Long options only.  */
+                    switch (longoption[GetOpt.getLongOptIndex()].getLongopt()){
+                        case "debug":
+                            Debug.setEnabled(true);
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     filearray.add(GetOpt.getArgument());
