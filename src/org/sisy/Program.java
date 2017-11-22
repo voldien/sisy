@@ -34,8 +34,8 @@ public class Program {
         try {
             config = Config.createConfig(argv);
         } catch (Exception ex) {
-            System.console().printf("Failed while reading user options: '%s'.\n", ex.getMessage());
-            ex.printStackTrace();
+            System.err.printf("Failed while reading user options: '%s'.\n", ex.getMessage());
+            Debug.printStack(ex);
             System.exit(1);
         }
 
@@ -46,8 +46,8 @@ public class Program {
             directory = FileUtility.getAllSubDirectory(config.getString("recursion"));
 
         } catch (Exception ex) {
-            System.console().printf("Requires at least a single file.\n");
-            ex.printStackTrace();
+            System.err.printf("Requires at least a single file.\n");
+            Debug.printStack(ex);
             System.exit(1);
         }
 
@@ -60,8 +60,8 @@ public class Program {
         try {
             recursiveCrypto(files, directory, config.getString("password"), cipher, config);
         } catch (Exception ex) {
-            System.console().printf("Error occurred during encryption/decryption: '%s'.\n", ex.getMessage());
-            ex.printStackTrace();
+            System.err.printf("Error occurred during encryption/decryption: '%s'.\n", ex.getMessage());
+            Debug.printStack(ex);
             System.exit(1);
         }
 
