@@ -8,19 +8,20 @@ public class Debug {
     private static boolean enabled = false;
 
     /**
-     *
-     * @param enabled
+     * Set the debug mode.
+     * @param enabled true of false.
      */
-    public static void setEnabled(boolean enabled){
-        Debug.enabled = true;
+    public static void setEnabled(boolean enabled) {
+        Debug.enabled = enabled;
     }
 
     /**
-     *
-     * @param ex
+     * Print the stack trace of the
+     * exception if debug is enabled.
+     * @param ex non null exception
      */
-    public static void printStack(Exception ex){
-        if(enabled)
+    public static void printStack(Exception ex) {
+        if (enabled)
             ex.printStackTrace();
     }
 }
