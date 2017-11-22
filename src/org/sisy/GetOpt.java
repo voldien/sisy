@@ -14,6 +14,7 @@ public class GetOpt {
      */
     private static String optarg;
     private static int optind = 0;
+    private static int optlongind = 0;
 
     /**
      * Get option by parsing the argument vector.
@@ -23,14 +24,14 @@ public class GetOpt {
      * @param longoption long option that maps to short option.
      * @return short option code, -1 if no more to read.
      * @throws Exception if argument is invalid.
-     * @throws IllegalArgumentException if argument is invalid.
+     * @throws NullPointerException if argument is invalid.
      */
     public static int getOptLong(String[] argv, String shortopt, Option[] longoption) throws Exception {
 
         if(argv == null)
-            throw new IllegalArgumentException("Parameter argv cannot be a null reference.");
+            throw new NullPointerException("Parameter argv cannot be a null reference.");
         if(shortopt == null)
-            throw new IllegalArgumentException("Parameter shortopt cannot be a null reference.");
+            throw new NullPointerException("Parameter shortopt cannot be a null reference.");
 
         /*	Continue in till all argument has been read. */
         while (optind < argv.length) {
@@ -51,9 +52,10 @@ public class GetOpt {
                 }
 
                 /*  */
-                for (Option option : longoption) {
-                    if (option.getLongopt().compareTo(larg) == 0) {
-                        return option.getShortopt();
+                for(int i = 0; i < longoption.length; i++){
+                    if (longoption[i].getLongopt().compareTo(larg) == 0) {
+                        optlongind = i;
+                        return longoption[i].getShortopt();
                     }
                 }
 
@@ -71,7 +73,7 @@ public class GetOpt {
                     }
 
 					/*	return option code.	*/
-                    return Integer.valueOf(sarg);
+                    return sarg.charAt(0);
 
                 } else
                     throw new Exception(String.format("Invalid option, %s", arg));
@@ -90,6 +92,23 @@ public class GetOpt {
     public static void reset(){
        optarg = null;
        optind = 0;
+       optlongind = 0;
+    }
+
+    /**
+     * Get current index of in the option.
+     * @return non negative index.
+     */
+    public static int getIndex(){
+        return optind;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static int getLongOptIndex(){
+        return optlongind;
     }
 
     /**
