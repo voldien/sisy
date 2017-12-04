@@ -23,14 +23,14 @@ public class GetOpt {
      * @param shortopt   supported short option with the same standard as in getopt.
      * @param longoption long option that maps to short option.
      * @return short option code, -1 if no more to read.
-     * @throws Exception if argument is invalid.
+     * @throws Exception            if argument is invalid.
      * @throws NullPointerException if argument is invalid.
      */
     public static int getOptLong(String[] argv, String shortopt, Option[] longoption) throws Exception {
 
-        if(argv == null)
+        if (argv == null)
             throw new NullPointerException("Parameter argv cannot be a null reference.");
-        if(shortopt == null)
+        if (shortopt == null)
             throw new NullPointerException("Parameter shortopt cannot be a null reference.");
 
         /*	Continue in till all argument has been read. */
@@ -52,7 +52,7 @@ public class GetOpt {
                 }
 
                 /*  */
-                for(int i = 0; i < longoption.length; i++){
+                for (int i = 0; i < longoption.length; i++) {
                     if (longoption[i].getLongopt().compareTo(larg) == 0) {
                         optlongind = i;
                         return longoption[i].getShortopt();
@@ -67,7 +67,7 @@ public class GetOpt {
 
 				/*	Exist as valid*/
                 if (shortopt.contains(arg.substring(1))) {
-					/*	Check if next is argument or not.	*/
+                    /*	Check if next is argument or not.	*/
                     if (shortopt.contains(sarg + ":")) {
                         optarg = argv[optind++];
                     }
@@ -87,27 +87,30 @@ public class GetOpt {
     }
 
     /**
-     *  Reset the getopt.
+     * Reset the getopt.
      */
-    public static void reset(){
-       optarg = null;
-       optind = 0;
-       optlongind = 0;
+    public static void reset() {
+        optarg = null;
+        optind = 0;
+        optlongind = 0;
     }
 
     /**
      * Get current index of in the option.
+     *
      * @return non negative index.
      */
-    public static int getIndex(){
+    public static int getIndex() {
         return optind;
     }
 
     /**
+     * Get current long option index used last invoked
+     * {@getOptLong}.
      *
-     * @return
+     * @return non negative.
      */
-    public static int getLongOptIndex(){
+    public static int getLongOptIndex() {
         return optlongind;
     }
 
