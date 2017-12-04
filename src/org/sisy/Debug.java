@@ -9,6 +9,7 @@ public class Debug {
 
     /**
      * Set the debug mode.
+     *
      * @param enabled true of false.
      */
     public static void setEnabled(boolean enabled) {
@@ -18,6 +19,7 @@ public class Debug {
     /**
      * Print the stack trace of the
      * exception if debug is enabled.
+     *
      * @param ex non null exception
      */
     public static void printStack(Exception ex) {
