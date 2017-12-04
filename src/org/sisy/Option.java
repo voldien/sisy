@@ -1,8 +1,8 @@
 package org.sisy;
 
 /**
- * Option associated with class GetOpt
- * for long option and map it to short
+ * Option associated with the {@link GetOpt}
+ * class for long option and map it to short
  * option.
  *
  * @author Valdemar Lindberg
