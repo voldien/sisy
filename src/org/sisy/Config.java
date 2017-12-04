@@ -32,8 +32,8 @@ public class Config {
     /**
      * Set boolean.
      *
-     * @param key
-     * @param bool
+     * @param key key associated with the value.
+     * @param bool value.
      */
     public void setBoolean(String key, boolean bool) {
         this.iconfig.put(key, bool ? 1 : 0);
@@ -42,7 +42,7 @@ public class Config {
     /**
      * Set string.
      *
-     * @param key
+     * @param key valid key.
      * @param value
      */
     public void setString(String key, String value) {
@@ -52,7 +52,7 @@ public class Config {
     /**
      * Set string array.
      *
-     * @param key
+     * @param key valid key.
      * @param values
      */
     public void setStrings(String key, String[] values) throws Exception {
@@ -60,8 +60,9 @@ public class Config {
     }
 
     /**
-     * @param key
-     * @return
+     * Get integer from key.
+     * @param key valid key.
+     * @return integer value.
      * @throws IllegalArgumentException if no entry exists.
      */
     public int getInt(String key) {
@@ -102,7 +103,7 @@ public class Config {
     /**
      * Get string by key.
      *
-     * @param key
+     * @param key key associated with the value.
      * @return non-null string.
      * @throws IllegalArgumentException if no entry exists.
      */
@@ -113,9 +114,9 @@ public class Config {
         return sconfig.get(key);
     }
 
-    private Hashtable<String, String> sconfig;
-    private Hashtable<String, String[]> saconfig;
-    private Hashtable<String, Integer> iconfig;
+    private Hashtable<String, String> sconfig;      /*  String configuration.   */
+    private Hashtable<String, String[]> saconfig;   /*  String array configuration.    */
+    private Hashtable<String, Integer> iconfig;     /*  Integer configuration.  */
 
     /**
      * Load default configuration.
