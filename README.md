@@ -3,22 +3,21 @@
 The *sisy* program is simple command line tool for encrypt/decrypting file. Where it it provides a simple set of command line options. Where the minimum amount of argument required is only the file path. Where all the settings of the program can overriden by the command line options.
 
 *Features*
-* Compression - All files has the option of being compressed before encrypted.
+* Compression - All files has the option of being compressed before being encrypted.
 * Password - All cryptographic symmetric block cipher supports a human password for creating the required cipher key.
 * Verbose logging - Each file will by default be verbosed
 
 # Motivation #
-----
+
 The program was created in order to create a simple file encryption/decryption tool for the command line. Where each encrypted file contains encrypted meta data. This allows the user from having to explicity input all the parametered requried in order to take advantages of 'mode of operation'. It also contains a signature for checking if the file was encrypted with the sisy program.
 
 # Prerequisites #
-----
+
 The only prerequisite for the program is that the program was written for *java 8*. This implies that older version of *java* many not work as accordinly.
 
 All the library dependency is the *java* and *javax* libraries. These are however commonly installed along the JDK (Java Development Kit).
 
 # Installation #
-----
 
 The following section covers how to compile from the source code and install the program onto the system. ( This may change in the future when project will migrate to either to the *ant* or *maven* project management software). However the make file will not be removed once the migrated has been performed.
 
